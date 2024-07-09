@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { Dashboard2Component } from './dashboard2/dashboard2.component';
+import { AccesspageComponent } from './accesspage/accesspage.component';
     
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SidebarComponent,
     NavbarComponent,
     DashboardComponent,
-    UserpageComponent
+    UserpageComponent,
+    Dashboard2Component,
+    AccesspageComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     ],
   providers: [
     provideAnimationsAsync()

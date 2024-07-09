@@ -4,13 +4,20 @@ import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { Dashboard2Component } from './dashboard2/dashboard2.component';
+
 import { UserpageComponent } from './userpage/userpage.component';
+import { AccesspageComponent } from './accesspage/accesspage.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'sidebar', component: SidebarComponent },
   { path: 'navbar', component: NavbarComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard2', component: Dashboard2Component },
+  { path: 'accesspage', component: AccesspageComponent },
+
+
   { path: 'userpage', component: UserpageComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },  
 ];

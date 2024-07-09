@@ -12,8 +12,18 @@ export class LoginComponent {
 
   constructor(private router: Router) {}
 
-  login() {
-       this.router.navigate(['/dashboard']);
-    
+
+  login(username: string, password: string) {
+     if (username === 'admin' && password === '123') {
+       this.router.navigate(['/dashboard']);  
+    } 
+    else if(username !== 'admin' && password === '123'){
+      alert('welcome user');
+      this.router.navigate(['/dashboard2']);  
+    }else {
+      alert('Invalid Username or Password!!' );
+       console.log('Login failed!');
+    }
   }
+  
 }
