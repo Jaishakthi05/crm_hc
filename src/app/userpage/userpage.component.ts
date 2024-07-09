@@ -19,7 +19,7 @@ export class UserpageComponent implements OnInit, AfterViewInit {
   constructor(private indiamartLeadService: IndiaMartService) { }
 
   ngOnInit(): void {
-    this.fetchLeads();
+    // this.fetchLeads();
   }
 
   ngAfterViewInit() {
@@ -27,17 +27,17 @@ export class UserpageComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  fetchLeads() {
-    this.indiamartLeadService.getLeads().subscribe(
-      (data: LeadData[]) => {
-        this.dataSource.data = data;
-        console.log('Response from API:', data);
-      },
-      (error: any) => {
-        console.error('Error fetching leads', error);
-      }
-    );
-  }
+  // fetchLeads() {
+  //   this.indiamartLeadService.getLeads().subscribe(
+  //     (data: LeadData[]) => {
+  //       this.dataSource.data = data;
+  //       console.log('Response from API:', data);
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching leads', error);
+  //     }
+  //   );
+  // }
 
   applyFilter(input: HTMLInputElement) {
     const filterValue = input.value.trim().toLowerCase();
