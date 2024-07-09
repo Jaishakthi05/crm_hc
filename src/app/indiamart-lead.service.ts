@@ -8,16 +8,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class IndiaMartService {
-  private apiUrl = 'https://api.indiamart.com'; // Example API base URL
+  getLeads() {
+    throw new Error('Method not implemented.');
+  }
+  private apiUrl = 'https://api.indiamart.com';  
 
   constructor(private http: HttpClient) { }
 
-  // Method to fetch leads
-  fetchLeads(apiKey: string): Observable<any> {
+   fetchLeads(apiKey: string): Observable<any> {
     const url = `${this.apiUrl}/leads`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}` // Assuming Bearer token authorization
+      'Authorization': `Bearer ${apiKey}` // 
     });
 
     return this.http.get<any>(url, { headers });

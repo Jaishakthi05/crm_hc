@@ -1,46 +1,42 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
-export interface UserData {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  phone: string;
-  // Add more fields as per your API response
-}
+import { IndiaMartService, LeadData } from '../indiamart-lead.service';
 
 @Component({
   selector: 'app-userpage',
   templateUrl: './userpage.component.html',
   styleUrls: ['./userpage.component.css']
 })
-
-
-export class UserpageComponent implements OnInit {
+export class UserpageComponent implements OnInit, AfterViewInit {
   
-  displayedColumns: string[] = ['id', 'name', 'username', 'email', 'phone'];
-  dataSource = new MatTableDataSource<UserData>();
+  displayedColumns: string[] = ['id', 'buyername', 'company', 'email', 'phone'];
+  dataSource = new MatTableDataSource<LeadData>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private http: HttpClient) { }
-   
+  constructor(private indiamartLeadService: IndiaMartService) { }
+
   ngOnInit(): void {
-    this.dataSource.sort = this.sort;
-    this.fetchUsers();
+    this.fetchLeads();
   }
 
-  fetchUsers() {
-    this.http.get<UserData[]>('https://jsonplaceholder.typicode.com/users')
-      .subscribe(users => {
-        this.dataSource.data = users;
-        this.dataSource.paginator = this.paginator;  
-        console.log('Response from API:', users);  
-      });
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  fetchLeads() {
+    this.indiamartLeadService.getLeads().subscribe(
+      (data: LeadData[]) => {
+        this.dataSource.data = data;
+        console.log('Response from API:', data);
+      },
+      (error: any) => {
+        console.error('Error fetching leads', error);
+      }
+    );
   }
 
   applyFilter(input: HTMLInputElement) {
