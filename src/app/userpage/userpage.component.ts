@@ -28,7 +28,7 @@ export class UserpageComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private http: HttpClient) { }
-
+   
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
     this.fetchUsers();
