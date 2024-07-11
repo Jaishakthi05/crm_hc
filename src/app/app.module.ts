@@ -18,6 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { Dashboard2Component } from './dashboard2/dashboard2.component';
 import { AccesspageComponent } from './accesspage/accesspage.component';
+import { UserauthpageComponent } from './userauthpage/userauthpage.component';
+import { CalltrackComponent } from './calltrack/calltrack.component';
+import { ReportpageComponent } from './reportpage/reportpage.component';
     
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { AccesspageComponent } from './accesspage/accesspage.component';
     DashboardComponent,
     UserpageComponent,
     Dashboard2Component,
-    AccesspageComponent
+    AccesspageComponent,
+    UserauthpageComponent,
+    CalltrackComponent,
+    ReportpageComponent
   ],
   imports: [
     BrowserModule,
