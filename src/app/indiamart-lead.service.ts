@@ -15,6 +15,9 @@ export interface LeadData {
   providedIn: 'root'
 })
 export class IndiaMartService {
+  getLeads() {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'https://api.indiamart.com';
 
   constructor(private http: HttpClient) { }
