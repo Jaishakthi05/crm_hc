@@ -1,22 +1,42 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card">
-        <h5 class="card-header badge-success text-white">RKS Health Care</h5>
-        <div class="card-body  ">
-          <form (ngSubmit)="login(username.value, password.value)" #loginForm="ngForm">
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" id="username" class="form-control" placeholder="Enter username"  #username required >
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" id="password" class="form-control" placeholder="Enter password"  #password required >
-            </div>
-            <button type="submit" class="btn btn-success btn-block">Login</button>
-          </form>
-        </div>
-      </div>
+<!-- Login Form -->
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+  <!-- Username Field -->
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      formControlName="username"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+    />
+    <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+      <div *ngIf="f['username'].errors?.required">Username is required</div>
     </div>
   </div>
-</div>
+
+  <!-- Password Field -->
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+    />
+    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+      <div *ngIf="f['password'].errors?.required">Password is required</div>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Login</button>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+</form>
